@@ -70,6 +70,7 @@
         "-DQt5LinguistTools_DIR=${pkgs.qt5.qttools.dev}/lib/cmake/Qt5LinguistTools"
         "-DQt5SerialPort_DIR=${pkgs.qt5.qtserialport.dev}/lib/cmake/Qt5SerialPort"
         "-DQt5UiTools_DIR=${pkgs.qt5.qttools.dev}/lib/cmake/Qt5UiTools"
+        "-DOpenCV_DIR=${pkgs.opencv4}/lib/cmake/opencv4"
         # OpenToonz-specific flags for mobile/iOS
         "-DWITH_WINTAB=OFF"
         "-DWITH_MIDI=OFF"
