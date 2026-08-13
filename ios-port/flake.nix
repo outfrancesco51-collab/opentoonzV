@@ -47,6 +47,7 @@
         superlu
         lzo
         lz4
+        libusb1
       ];
 
       cmakeFlags = [
