@@ -48,6 +48,10 @@
         lzo
       ];
 
+      preConfigure = ''
+        rm -f ../toonz/cmake/FindTIFF.cmake
+      '';
+
       cmakeFlags = [
         "-DNIX_BUILD=1"
         "-DCMAKE_BUILD_TYPE=Release"
@@ -74,6 +78,8 @@
         # OpenToonz-specific flags for mobile/iOS
         "-DWITH_WINTAB=OFF"
         "-DWITH_MIDI=OFF"
+        "-DWITH_SYSTEM_LZO=ON"
+        "-DWITH_SYSTEM_SUPERLU=ON"
       ];
 
       cmakeDir = "../toonz/sources";
