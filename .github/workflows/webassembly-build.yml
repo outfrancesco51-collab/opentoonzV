@@ -35,7 +35,6 @@ jobs:
           version: '6.5.3'
           target: 'desktop'
           arch: 'wasm_singlethread'
-          modules: 'qtmultimedia qtwebsockets'
           cache: 'true'
 
       - name: Configure OpenToonz for WebAssembly

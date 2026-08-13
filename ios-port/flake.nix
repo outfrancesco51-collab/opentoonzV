@@ -36,6 +36,12 @@
         zlib
       ];
 
+      # Merge all Qt5 dev outputs so CMake can find all components in one prefix
+      qt5Env = pkgs.symlinkJoin {
+        name = "qt5-env";
+        paths = with pkgs.qt5; [ qtbase.dev qtsvg.dev qtmultimedia.dev qtscript.dev qttools.dev ];
+      };
+
       cmakeFlags = [
         "-DNIX_BUILD=1"
         "-DCMAKE_BUILD_TYPE=Release"
@@ -43,6 +49,7 @@
         "-DCMAKE_SYSTEM_NAME=iOS"
         "-DCMAKE_OSX_ARCHITECTURES=arm64"
         "-DCMAKE_SYSTEM_PROCESSOR=aarch64"
+        "-DQt5_DIR=${qt5Env}/lib/cmake/Qt5"
         # OpenToonz-specific flags for mobile/iOS
         "-DWITH_WINTAB=OFF"
         "-DWITH_MIDI=OFF"
