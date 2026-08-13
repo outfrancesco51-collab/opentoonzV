@@ -46,6 +46,8 @@
         "-DWITH_MIDI=OFF"
       ];
 
+      cmakeDir = "../toonz/sources";
+
       installPhase = ''
         mkdir -p $out
         cmake --install . --prefix $out
