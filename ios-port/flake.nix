@@ -12,7 +12,7 @@
     # Merge all Qt5 dev outputs so CMake can find all components in one prefix
     qt5Env = pkgs.symlinkJoin {
       name = "qt5-env";
-      paths = with pkgs.qt5; [ qtbase.dev qtsvg.dev qtmultimedia.dev qtscript.dev qttools.dev ];
+      paths = with pkgs.qt5; [ qtbase.dev qtsvg.dev qtmultimedia.dev qtscript.dev qttools.dev qtserialport.dev ];
     };
   in {
     packages.${system}.default = pkgs.stdenv.mkDerivation {
@@ -35,6 +35,7 @@
         qt5.qtmultimedia
         qt5.qtscript
         qt5.qttools
+        qt5.qtserialport
         boost
         libpng
         libjpeg
@@ -63,6 +64,8 @@
         "-DQt5Svg_DIR=${pkgs.qt5.qtsvg.dev}/lib/cmake/Qt5Svg"
         "-DQt5Script_DIR=${pkgs.qt5.qtscript.dev}/lib/cmake/Qt5Script"
         "-DQt5LinguistTools_DIR=${pkgs.qt5.qttools.dev}/lib/cmake/Qt5LinguistTools"
+        "-DQt5SerialPort_DIR=${pkgs.qt5.qtserialport.dev}/lib/cmake/Qt5SerialPort"
+        "-DQt5UiTools_DIR=${pkgs.qt5.qttools.dev}/lib/cmake/Qt5UiTools"
         # OpenToonz-specific flags for mobile/iOS
         "-DWITH_WINTAB=OFF"
         "-DWITH_MIDI=OFF"
