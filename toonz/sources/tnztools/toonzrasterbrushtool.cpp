@@ -1118,7 +1118,7 @@ void ToonzRasterBrushTool::handleMouseEvent(MouseEventType type,
   bool shift       = e.getModifiersMask() & TMouseEvent::SHIFT_KEY;
   bool control     = e.getModifiersMask() & TMouseEvent::CTRL_KEY;
   TPointD fixedPos = pos;
-  if (m_pencil.getValue()) {
+  if (isPencilModeActive()) {
     fixedPos = getCenteredCursorPos(pos);
     fixedPos = TPointD(tround(fixedPos.x), tround(fixedPos.y));
   }
@@ -1243,11 +1243,11 @@ void ToonzRasterBrushTool::inputSetBusy(bool busy) {
           MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC);
       m_painting.myPaint.baseBrush.setBaseValue(
           MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC, baseSize + modifierSize);
-    } else if (m_hardness.getValue() == 100 || m_pencil.getValue()) {
+    } else if (m_hardness.getValue() == 100 || isPencilModeActive()) {
       // init pencil drawing
 
       m_painting.pencil.isActive   = true;
-      m_painting.pencil.realPencil = m_pencil.getValue();
+      m_painting.pencil.realPencil = isPencilModeActive();
     } else {
       // init blured brush drawing (regular drawing)
 
@@ -1565,14 +1565,14 @@ void ToonzRasterBrushTool::draw() {
     int lx       = ras->getLx();
     int ly       = ras->getLy();
     drawEmptyCircle(m_brushPos, tround(m_minThick), lx % 2 == 0, ly % 2 == 0,
-                    m_pencil.getValue());
+                    isPencilModeActive());
     drawEmptyCircle(m_brushPos, tround(m_maxThick), lx % 2 == 0, ly % 2 == 0,
-                    m_pencil.getValue());
+                    isPencilModeActive());
   } else {
     drawEmptyCircle(m_brushPos, tround(m_minThick), true, true,
-                    m_pencil.getValue());
+                    isPencilModeActive());
     drawEmptyCircle(m_brushPos, tround(m_maxThick), true, true,
-                    m_pencil.getValue());
+                    isPencilModeActive());
   }
 }
 
@@ -1693,7 +1693,7 @@ bool ToonzRasterBrushTool::onPropertyChanged(std::string propertyName) {
   RasterBrushMaxSize       = m_rasThickness.getValue().second;
   BrushSmooth              = m_smooth.getValue();
   BrushDrawOrder           = m_drawOrder.getIndex();
-  RasterBrushPencilMode    = m_pencil.getValue();
+  RasterBrushPencilMode    = isPencilModeActive();
   BrushPressureSensitivity = m_pressure.getValue();
   RasterBrushHardness      = m_hardness.getValue();
   RasterBrushModifierSize  = m_modifierSize.getValue();
@@ -1951,7 +1951,7 @@ void ToonzRasterBrushTool::addPreset(QString name) {
   preset.m_smooth            = m_smooth.getValue();
   preset.m_hardness          = m_hardness.getValue();
   preset.m_drawOrder         = m_drawOrder.getIndex();
-  preset.m_pencil            = m_pencil.getValue();
+  preset.m_pencil            = isPencilModeActive();
   preset.m_pressure          = m_pressure.getValue();
   preset.m_modifierSize      = m_modifierSize.getValue();
   preset.m_modifierLockAlpha = m_modifierLockAlpha.getValue();
@@ -2074,7 +2074,9 @@ void ToonzRasterBrushTool::loadLastBrush() {
 /*!	Brush、PaintBrush、EraserToolがPencilModeのときにTrueを返す
  */
 bool ToonzRasterBrushTool::isPencilModeActive() {
-  return getTargetType() == TTool::ToonzImage && m_pencil.getValue();
+  if (getTargetType() != TTool::ToonzImage) return false;
+  if (Preferences::instance()->isExperimentalCelBrushEnabled()) return true;
+  return m_pencil.getValue();
 }
 
 //------------------------------------------------------------------
