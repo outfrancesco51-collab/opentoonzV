@@ -48,8 +48,10 @@
         lzo
       ];
 
-      preConfigure = ''
-        rm -f ../toonz/cmake/FindTIFF.cmake
+      postPatch = ''
+        rm -f toonz/cmake/FindTIFF.cmake
+        rm -f toonz/cmake/FindSuperLU.cmake
+        rm -f toonz/cmake/FindLZO.cmake
       '';
 
       cmakeFlags = [
