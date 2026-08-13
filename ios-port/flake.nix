@@ -48,6 +48,8 @@
         lzo
         lz4
         libusb1
+        libmypaint
+        libjpeg_turbo
       ];
 
       cmakeFlags = [
