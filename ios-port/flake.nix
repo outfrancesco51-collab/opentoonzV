@@ -20,6 +20,7 @@
         cmake
         ninja
         pkg-config
+        qt6.wrapQtAppsHook
       ];
 
       buildInputs = with pkgs; [
