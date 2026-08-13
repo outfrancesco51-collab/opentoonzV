@@ -1,0 +1,66 @@
+name: OpenToonz WebAssembly Build
+
+on:
+  push:
+    branches: [ master, main ]
+  workflow_dispatch:
+
+jobs:
+  build-wasm:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write 
+
+    steps:
+      - name: Checkout OpenToonz
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Setup Emscripten
+        uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: '3.1.50'
+          actions-cache-folder: 'emsdk-cache'
+
+      - name: Setup Qt for WebAssembly
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.5.0'
+          target: 'desktop'
+          arch: 'wasm_32'
+          modules: 'qtmultimedia qtwebsockets qtdeclarative'
+          cache: 'true'
+
+      - name: Configure OpenToonz for WebAssembly
+        run: |
+          mkdir build_wasm && cd build_wasm
+          qt-cmake ../toonz/sources \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DWEBASSEMBLY=1 -DEMSCRIPTEN=1 \
+            -DCMAKE_CXX_FLAGS="-s USE_PTHREADS=1 -s ALLOW_MEMORY_GROWTH=1 -s MAX_WEBGL_VERSION=2 -s LEGACY_GL_EMULATION=1 -O3" \
+            -DCMAKE_EXE_LINKER_FLAGS="-s USE_PTHREADS=1 -s ALLOW_MEMORY_GROWTH=1 -s INITIAL_MEMORY=1024MB -s EXPORTED_RUNTIME_METHODS=['FS','IDBFS'] -O3"
+
+      - name: Build OpenToonz
+        run: |
+          cd build_wasm
+          cmake --build . --parallel 4 || true # Allow failure for now as third-party deps need Wasm ports
+
+      - name: Package Web Artifacts
+        run: |
+          mkdir -p web_dist
+          cp build_wasm/opentoonz.* web_dist/ || true
+          cp build_wasm/qtloader.js web_dist/ || true
+
+      - name: Upload WebAssembly Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: opentoonz-web-build
+          path: web_dist/
+          retention-days: 7
