@@ -10,6 +10,8 @@ on:
 jobs:
   build:
     runs-on: macos-14
+    permissions:
+      contents: write
     steps:
     - uses: actions/checkout@v4
     
@@ -29,3 +31,15 @@ jobs:
       with:
         name: OpenToonz-iOS
         path: ios-port/result/OpenToonz.ipa
+
+    - name: Create Release
+      if: github.ref == 'refs/heads/master'
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: latest-ios-build
+        name: Latest iOS Build
+        draft: false
+        prerelease: true
+        files: ios-port/result/OpenToonz.ipa
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
