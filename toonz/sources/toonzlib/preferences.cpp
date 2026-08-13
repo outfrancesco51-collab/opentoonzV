@@ -693,6 +693,10 @@ void Preferences::definePreferenceItems() {
   define(latestVersionCheckEnabled, "latestVersionCheckEnabled",
          QMetaType::Bool, true);
 
+  // Preview Features
+  define(experimentalCelBrush, "experimentalCelBrush", QMetaType::Bool, true);
+  define(experimentalNewPluginSystem, "experimentalNewPluginSystem", QMetaType::Bool, true);
+
   // Touch / Tablet Settings
   define(winInkEnabled, "winInkEnabled", QMetaType::Bool, false);
   // This option will be shown & available only when WITH_WINTAB is defined

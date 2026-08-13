@@ -1633,7 +1633,7 @@ PreferencesPopup::PreferencesPopup()
              << tr("Drawing") << tr("Tools") << tr("Xsheet") << tr("Onion Skin")
              << tr("Animation") << tr("Auto Lip-Sync") << tr("Colors")
              << tr("Vector Visualize") << tr("Version Control")
-             << tr("Touch/Tablet Settings");
+             << tr("Touch/Tablet Settings") << tr("Preview Features");
 #ifdef _WIN32
   categories << tr("Addons");
 #endif
@@ -1659,6 +1659,7 @@ PreferencesPopup::PreferencesPopup()
   stackedWidget->addWidget(createVisualizationPage());
   stackedWidget->addWidget(createVersionControlPage());
   stackedWidget->addWidget(createTouchTabletPage());
+  stackedWidget->addWidget(createPreviewFeaturesPage());
 #ifdef _WIN32
   stackedWidget->addWidget(createAddonsPage());
 #endif  // WIN32
@@ -2392,6 +2393,25 @@ QWidget* PreferencesPopup::createOnionSkinPage() {
     m_controlIdMap.key(frontOnionColor)->setDisabled(true);
     m_controlIdMap.key(onionInksOnly)->setDisabled(true);
   }
+
+  return widget;
+}
+
+//-----------------------------------------------------------------------------
+
+QWidget* PreferencesPopup::createPreviewFeaturesPage() {
+  QWidget* widget  = new QWidget(this);
+  QGridLayout* lay = new QGridLayout();
+  setupLayout(lay);
+
+  QGridLayout* featuresLay = insertGroupBox(tr("Preview Features"), lay);
+  {
+    insertUI(experimentalCelBrush, featuresLay);
+    insertUI(experimentalNewPluginSystem, featuresLay);
+  }
+
+  lay->setRowStretch(lay->rowCount(), 1);
+  widget->setLayout(lay);
 
   return widget;
 }

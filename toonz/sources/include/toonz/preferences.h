@@ -534,6 +534,10 @@ public:
     return getBoolValue(latestVersionCheckEnabled);
   }
 
+  // Preview Features tab
+  bool isExperimentalCelBrushEnabled() const { return getBoolValue(experimentalCelBrush); }
+  bool isExperimentalNewPluginSystemEnabled() const { return getBoolValue(experimentalNewPluginSystem); }
+
   // Tablet tab
   bool isWinInkEnabled() const { return getBoolValue(winInkEnabled); }
   bool isQtNativeWinInkEnabled() const {

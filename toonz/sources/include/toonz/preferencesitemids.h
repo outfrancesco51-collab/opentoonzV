@@ -206,6 +206,11 @@ enum PreferencesItemId {
   latestVersionCheckEnabled,
 
   //----------
+  // Preview Features
+  experimentalCelBrush,
+  experimentalNewPluginSystem,
+
+  //----------
   // Touch / Tablet Settings
   // TounchGestureControl // Touch Gesture is a checkable command and not in
   // preferences.ini
