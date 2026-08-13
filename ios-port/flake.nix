@@ -48,12 +48,6 @@
         lzo
       ];
 
-      postPatch = ''
-        rm -f toonz/cmake/FindTIFF.cmake
-        rm -f toonz/cmake/FindSuperLU.cmake
-        rm -f toonz/cmake/FindLZO.cmake
-      '';
-
       cmakeFlags = [
         "-DNIX_BUILD=1"
         "-DCMAKE_BUILD_TYPE=Release"
@@ -77,6 +71,13 @@
         "-DQt5SerialPort_DIR=${pkgs.qt5.qtserialport.dev}/lib/cmake/Qt5SerialPort"
         "-DQt5UiTools_DIR=${pkgs.qt5.qttools.dev}/lib/cmake/Qt5UiTools"
         "-DOpenCV_DIR=${pkgs.opencv4}/lib/cmake/opencv4"
+        # Explicit bypass for FindTIFF, FindSuperLU, FindLZO on macOS/iOS
+        "-DTIFF_INCLUDE_DIR=${pkgs.libtiff.dev}/include"
+        "-DTIFF_LIBRARY=${pkgs.libtiff.out}/lib/libtiff.a"
+        "-DSUPERLU_INCLUDE_DIR=${pkgs.superlu}/include"
+        "-DSUPERLU_LIBRARY=${pkgs.superlu}/lib/libsuperlu.a"
+        "-DLZO_INCLUDE_DIR=${pkgs.lzo}/include/lzo"
+        "-DLZO_LIBRARY=${pkgs.lzo}/lib/liblzo2.a"
         # OpenToonz-specific flags for mobile/iOS
         "-DWITH_WINTAB=OFF"
         "-DWITH_MIDI=OFF"
