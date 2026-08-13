@@ -48,6 +48,10 @@
         lzo
       ];
 
+      preConfigure = ''
+        export CMAKE_PREFIX_PATH="${qt5Env}:$CMAKE_PREFIX_PATH"
+      '';
+
       cmakeFlags = [
         "-DNIX_BUILD=1"
         "-DCMAKE_BUILD_TYPE=Release"
@@ -55,7 +59,6 @@
         "-DCMAKE_SYSTEM_NAME=iOS"
         "-DCMAKE_OSX_ARCHITECTURES=arm64"
         "-DCMAKE_SYSTEM_PROCESSOR=aarch64"
-        "-DQt5_DIR=${qt5Env}/lib/cmake/Qt5"
         # OpenToonz-specific flags for mobile/iOS
         "-DWITH_WINTAB=OFF"
         "-DWITH_MIDI=OFF"
