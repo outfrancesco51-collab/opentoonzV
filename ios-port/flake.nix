@@ -46,6 +46,7 @@
         glew
         superlu
         lzo
+        lz4
       ];
 
       cmakeFlags = [
@@ -85,7 +86,9 @@
         "-DJPEG_INCLUDE_DIR=${pkgs.libjpeg.dev}/include"
         "-DJPEG_LIBRARY=${pkgs.libjpeg.out}/lib/libjpeg.a"
         "-DGLEW_INCLUDE_DIR=${pkgs.glew.dev}/include"
-        "-DGLEW_LIBRARY=${pkgs.glew.out}/lib/libGLEW.a"
+        "-DGLEW_LIBRARIES=${pkgs.glew.out}/lib/libGLEW.a"
+        "-DGLEW_SHARED_LIBRARY_RELEASE=${pkgs.glew.out}/lib/libGLEW.a"
+        "-DGLEW_STATIC_LIBRARY_RELEASE=${pkgs.glew.out}/lib/libGLEW.a"
         # OpenToonz-specific flags for mobile/iOS
         "-DWITH_WINTAB=OFF"
         "-DWITH_MIDI=OFF"
