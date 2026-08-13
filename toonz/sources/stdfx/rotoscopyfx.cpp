@@ -3,9 +3,9 @@
 
 RotoscopyFx::RotoscopyFx()
     : m_threshold1(100.0)
-    : m_threshold2(200.0)
-    : m_apertureSize(3.0)
-    : m_L2gradient(false)
+    , m_threshold2(200.0)
+    , m_apertureSize(3.0)
+    , m_L2gradient(false)
 {
   addInputPort("Source", m_source);
   bindParam(this, "threshold1", m_threshold1);
