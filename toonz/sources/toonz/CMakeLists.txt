@@ -138,6 +138,7 @@ set(MOC_HEADERS
     convertfolderpopup.h
     exportcameratrackpopup.h
     videoextractpopup.h
+    a4layoutpopup.h
 )
 
 if(PLATFORM EQUAL 64)
@@ -319,6 +320,7 @@ set(SOURCES
     rasterizecommand.cpp
     vectorizerswatch.cpp
     videoextractpopup.cpp
+    a4layoutpopup.cpp
     versioncontrol.cpp
     versioncontroltimeline.cpp
     versioncontrolxmlreader.cpp

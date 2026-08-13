@@ -95,7 +95,7 @@ set(HEADERS
 )
 
 if(OpenCV_FOUND)
-    list(APPEND HEADERS iwa_bloomfx.h)
+    list(APPEND HEADERS iwa_bloomfx.h rotoscopyfx.h)
 endif()
 
 set(SOURCES
@@ -300,7 +300,7 @@ set(SOURCES
 )
 
 if(OpenCV_FOUND)
-    list(APPEND SOURCES iwa_bloomfx.cpp)
+    list(APPEND SOURCES iwa_bloomfx.cpp rotoscopyfx.cpp)
 endif()
 
 set(OBJCSOURCES

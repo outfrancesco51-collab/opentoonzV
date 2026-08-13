@@ -19,6 +19,7 @@
 #include "pltgizmopopup.h"
 #include "shortcutpopup.h"
 #include "videoextractpopup.h"
+#include "a4layoutpopup.h"
 
 // TnzTools includes
 #include "tools/toolcommandids.h"
@@ -507,6 +508,8 @@ centralWidget->setLayout(centralWidgetLayout);*/
   setCommandHandler("MI_LoadSubSceneFile", this, &MainWindow::onLoadSubScene);
   setCommandHandler(MI_VideoExtractFrames, this,
                     &MainWindow::onVideoExtractFrames);
+  setCommandHandler(MI_ExportA4Layout, this,
+                    &MainWindow::onExportA4Layout);
   setCommandHandler("MI_ResetRoomLayout", this, &MainWindow::resetRoomsLayout);
   setCommandHandler(MI_AutoFillToggle, this, &MainWindow::autofillToggle);
 
@@ -1070,6 +1073,11 @@ void MainWindow::onLoadSubScene() { IoCmd::loadSubScene(); }
 
 void MainWindow::onVideoExtractFrames() {
   VideoExtractPopup popup(this);
+  popup.exec();
+}
+
+void MainWindow::onExportA4Layout() {
+  A4LayoutPopup popup(this);
   popup.exec();
 }
 
@@ -2233,6 +2241,8 @@ void MainWindow::defineActions() {
   createMenuFileAction(MI_SoundTrack, QT_TR_NOOP("&Export Soundtrack"), "");
   createMenuFileAction(MI_VideoExtractFrames,
                        QT_TR_NOOP("Video: Extract Frames and Audio..."), "");
+  createMenuFileAction(MI_ExportA4Layout,
+                       QT_TR_NOOP("Export A4 Layout (Scanning-in-reverse)..."), "");
   createMenuFileAction(MI_Preferences, QT_TR_NOOP("&Preferences..."), "Ctrl+U",
                        "gear");
   createMenuFileAction(MI_ShortcutPopup, QT_TR_NOOP("&Configure Shortcuts..."),

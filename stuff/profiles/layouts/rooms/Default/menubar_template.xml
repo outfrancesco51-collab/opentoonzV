@@ -13,6 +13,7 @@
         <separator/>
         <command>MI_ConvertFileWithInput</command>
         <command>MI_VideoExtractFrames</command>
+        <command>MI_ExportA4Layout</command>
         <separator/>
         <command>MI_LoadColorModel</command>
         <separator/>
