@@ -46,6 +46,8 @@
         glew
         superlu
         lzo
+      ];
+
       cmakeFlags = [
         "-DNIX_BUILD=1"
         "-DCMAKE_BUILD_TYPE=Release"
