@@ -57,9 +57,12 @@
         "-DQt5Network_DIR=${pkgs.qt5.qtbase.dev}/lib/cmake/Qt5Network"
         "-DQt5OpenGL_DIR=${pkgs.qt5.qtbase.dev}/lib/cmake/Qt5OpenGL"
         "-DQt5Xml_DIR=${pkgs.qt5.qtbase.dev}/lib/cmake/Qt5Xml"
+        "-DQt5PrintSupport_DIR=${pkgs.qt5.qtbase.dev}/lib/cmake/Qt5PrintSupport"
         "-DQt5Multimedia_DIR=${pkgs.qt5.qtmultimedia.dev}/lib/cmake/Qt5Multimedia"
+        "-DQt5MultimediaWidgets_DIR=${pkgs.qt5.qtmultimedia.dev}/lib/cmake/Qt5MultimediaWidgets"
         "-DQt5Svg_DIR=${pkgs.qt5.qtsvg.dev}/lib/cmake/Qt5Svg"
         "-DQt5Script_DIR=${pkgs.qt5.qtscript.dev}/lib/cmake/Qt5Script"
+        "-DQt5LinguistTools_DIR=${pkgs.qt5.qttools.dev}/lib/cmake/Qt5LinguistTools"
         # OpenToonz-specific flags for mobile/iOS
         "-DWITH_WINTAB=OFF"
         "-DWITH_MIDI=OFF"
