@@ -32,9 +32,9 @@ jobs:
       - name: Setup Qt for WebAssembly
         uses: jurplel/install-qt-action@v3
         with:
-          version: '6.5.0'
+          version: '6.5.3'
           target: 'desktop'
-          arch: 'wasm_32'
+          arch: 'wasm_singlethread'
           modules: 'qtmultimedia qtwebsockets qtdeclarative'
           cache: 'true'
 
