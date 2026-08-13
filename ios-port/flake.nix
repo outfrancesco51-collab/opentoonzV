@@ -78,11 +78,20 @@
         "-DSUPERLU_LIBRARY=${pkgs.superlu}/lib/libsuperlu.a"
         "-DLZO_INCLUDE_DIR=${pkgs.lzo}/include/lzo"
         "-DLZO_LIBRARY=${pkgs.lzo}/lib/liblzo2.a"
+        "-DZLIB_INCLUDE_DIR=${pkgs.zlib.dev}/include"
+        "-DZLIB_LIBRARY=${pkgs.zlib.out}/lib/libz.a"
+        "-DPNG_PNG_INCLUDE_DIR=${pkgs.libpng.dev}/include"
+        "-DPNG_LIBRARY=${pkgs.libpng.out}/lib/libpng.a"
+        "-DJPEG_INCLUDE_DIR=${pkgs.libjpeg.dev}/include"
+        "-DJPEG_LIBRARY=${pkgs.libjpeg.out}/lib/libjpeg.a"
+        "-DGLEW_INCLUDE_DIR=${pkgs.glew.dev}/include"
+        "-DGLEW_LIBRARY=${pkgs.glew.out}/lib/libGLEW.a"
         # OpenToonz-specific flags for mobile/iOS
         "-DWITH_WINTAB=OFF"
         "-DWITH_MIDI=OFF"
         "-DWITH_SYSTEM_LZO=ON"
         "-DWITH_SYSTEM_SUPERLU=ON"
+        "-DWITH_SYSTEM_GLEW=ON"
       ];
 
       cmakeDir = "../toonz/sources";
