@@ -185,7 +185,7 @@ if(BUILD_ENV_MSVC)
       )
 elseif(BUILD_ENV_APPLE)
     # Try to find Qt from Homebrew if not explicitly set
-    if(NOT DEFINED QT_PATH)
+    if(NOT DEFINED QT_PATH AND NOT NIX_BUILD)
         execute_process(
             COMMAND brew --prefix qt@5
             OUTPUT_VARIABLE HOMEBREW_QT_PREFIX
@@ -199,12 +199,11 @@ elseif(BUILD_ENV_APPLE)
         message(STATUS "Auto-detected Qt path: ${QT_PATH}")
         set(QT_LIB_PATH "${QT_PATH}")
         list(APPEND CMAKE_PREFIX_PATH "${HOMEBREW_QT_PREFIX}/lib/cmake/Qt5")  # More precise for find_package(Qt5)
+    elseif(QT_PATH)
         # Conventional usage: if the QT_PATH is explicitly set
-    else()
         set(QT_LIB_PATH "${QT_PATH}/")
         list(APPEND CMAKE_PREFIX_PATH "${QT_LIB_PATH}cmake/Qt5")
     endif()
-
 
     foreach(path ${CMAKE_PREFIX_PATH})
         message(STATUS "CMAKE_PREFIX_PATH: ${path}")

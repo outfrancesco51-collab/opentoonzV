@@ -27,6 +27,8 @@
         qt5.qtbase
         qt5.qtsvg
         qt5.qtmultimedia
+        qt5.qtscript
+        qt5.qttools
         boost
         libpng
         libjpeg
@@ -35,12 +37,12 @@
       ];
 
       cmakeFlags = [
-        "-G=Ninja"
+        "-DNIX_BUILD=1"
+        "-DCMAKE_BUILD_TYPE=Release"
+        "-DCMAKE_INSTALL_PREFIX=$out"
         "-DCMAKE_SYSTEM_NAME=iOS"
         "-DCMAKE_OSX_ARCHITECTURES=arm64"
-        "-DCMAKE_SYSTEM_PROCESSOR=arm64"
-        "-DCMAKE_BUILD_TYPE=Release"
-        "-DQT_PATH=${pkgs.qt5.qtbase.dev}/lib"
+        "-DCMAKE_SYSTEM_PROCESSOR=aarch64"
         # OpenToonz-specific flags for mobile/iOS
         "-DWITH_WINTAB=OFF"
         "-DWITH_MIDI=OFF"
