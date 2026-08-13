@@ -100,8 +100,10 @@ endif()
 
 set(SOURCES
     adjustlevelsfx.cpp
+    advancedglowfx.cpp
     artcontourfx.cpp
     backlitfx.cpp
+    colorgradingfx.cpp
     blendtzfx.cpp
     blurfx.cpp
     bodyhighlightfx.cpp
@@ -118,6 +120,7 @@ set(SOURCES
     embossfx.cpp
     erodilatefx.cpp
     externalpalettefx.cpp
+    filmgrainfx.cpp
     fourpointsgradientfx.cpp
     freedistortfx.cpp
     gammafx.cpp
@@ -127,6 +130,7 @@ set(SOURCES
     hsvscalefx.cpp
     hsvutil.cpp
     kaleido.cpp
+    lensblurfx.cpp
     linearwavefx.cpp
     localblurfx.cpp
     localtransparencyfx.cpp

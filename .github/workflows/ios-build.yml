@@ -1,0 +1,31 @@
+name: Build iOS
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install Nix
+      uses: DeterminateSystems/nix-installer-action@main
+      with:
+        extra-conf: |
+          sandbox = false
+          
+    - name: Build ipa
+      run: |
+        cd ios-port
+        nix build .#default
+      
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: OpenToonz-iOS
+        path: ios-port/result/OpenToonz.ipa

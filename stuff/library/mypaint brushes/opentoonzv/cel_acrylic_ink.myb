@@ -1,0 +1,16 @@
+{
+  "comment": "OpenToonzV original mid-90s cel acrylic ink preset; not derived from any show or artist asset.",
+  "group": "OpenToonzV Cel Acrylic",
+  "parent_brush_name": "",
+  "settings": {
+    "opaque": {"base_value": 1.0, "inputs": {}},
+    "opaque_multiply": {"base_value": 0.18, "inputs": {"pressure": [[0.0, 0.15], [1.0, 0.9]]}},
+    "radius_logarithmic": {"base_value": 1.05, "inputs": {"pressure": [[0.0, -0.35], [1.0, 0.45]]}},
+    "hardness": {"base_value": 0.82, "inputs": {}},
+    "dabs_per_actual_radius": {"base_value": 3.0, "inputs": {}},
+    "dabs_per_basic_radius": {"base_value": 0.6, "inputs": {}},
+    "speed1_slowness": {"base_value": 0.18, "inputs": {}},
+    "stroke_threshold": {"base_value": 0.02, "inputs": {}},
+    "anti_aliasing": {"base_value": 1.0, "inputs": {}}
+  }
+}

@@ -64,6 +64,7 @@
 #define MI_SavePreset "MI_SavePreset"
 #define MI_ShortcutPopup "MI_ShortcutPopup"
 #define MI_Quit "MI_Quit"
+#define MI_VideoExtractFrames "MI_VideoExtractFrames"
 
 #define MI_Undo "MI_Undo"
 #define MI_Redo "MI_Redo"

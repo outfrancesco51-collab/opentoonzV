@@ -1,0 +1,13 @@
+/* OpenToonzV: original dark production theme, inspired by contemporary animation
+   workspaces without copying any third-party UI artwork. */
+:TOONZCOLORS { -bg-color: #171a21; -icon-base-opacity: 0.92; -icon-base-color: #c9d1d9; -icon-active-color: #76b7ff; -icon-selected-color: #ffffff; -icon-on-color: #76b7ff; -icon-close-color: #ef6a6a; -icon-preview-color: #60d6a2; -icon-vcheck-color: #e6bc62; -icon-lock-color: #8ba3be; -icon-keyframe-color: #6ea8ff; -icon-keyframe-modified-color: #f3bd5c; }
+QWidget { background: #171a21; color: #d8dee9; font-family: "Segoe UI", sans-serif; font-size: 10pt; }
+QMainWindow::separator { background: #2a303b; width: 1px; height: 1px; }
+QToolBar { background: #1d222b; border-bottom: 1px solid #303847; spacing: 6px; padding: 5px; }
+QDockWidget::title { background: #202631; color: #c7d2e2; padding: 7px 9px; border-bottom: 1px solid #303847; }
+QTabBar::tab { background: #202631; color: #99a7b8; padding: 8px 14px; margin-right: 1px; }
+QTabBar::tab:selected { background: #2b3442; color: white; border-top: 2px solid #5ea7ff; }
+QPushButton { background: #2a3443; border: 1px solid #3a4759; border-radius: 4px; padding: 5px 10px; }
+QPushButton:hover { background: #354359; border-color: #5ea7ff; }
+QLineEdit, QSpinBox, QComboBox { background: #11151c; border: 1px solid #344054; border-radius: 4px; padding: 5px; selection-background-color: #397cc5; }
+QMenu { background: #202631; border: 1px solid #3a4759; padding: 4px; } QMenu::item { padding: 6px 28px 6px 18px; } QMenu::item:selected { background: #324761; }

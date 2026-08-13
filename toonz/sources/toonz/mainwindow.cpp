@@ -18,6 +18,7 @@
 #include "audiorecordingpopup.h"
 #include "pltgizmopopup.h"
 #include "shortcutpopup.h"
+#include "videoextractpopup.h"
 
 // TnzTools includes
 #include "tools/toolcommandids.h"
@@ -504,6 +505,8 @@ centralWidget->setLayout(centralWidgetLayout);*/
   setCommandHandler("MI_NewScene", this, &MainWindow::onNewScene);
   setCommandHandler("MI_LoadScene", this, &MainWindow::onLoadScene);
   setCommandHandler("MI_LoadSubSceneFile", this, &MainWindow::onLoadSubScene);
+  setCommandHandler(MI_VideoExtractFrames, this,
+                    &MainWindow::onVideoExtractFrames);
   setCommandHandler("MI_ResetRoomLayout", this, &MainWindow::resetRoomsLayout);
   setCommandHandler(MI_AutoFillToggle, this, &MainWindow::autofillToggle);
 
@@ -1062,6 +1065,14 @@ void MainWindow::onLoadScene() { IoCmd::loadScene(); }
 //-----------------------------------------------------------------------------
 
 void MainWindow::onLoadSubScene() { IoCmd::loadSubScene(); }
+
+//-----------------------------------------------------------------------------
+
+void MainWindow::onVideoExtractFrames() {
+  VideoExtractPopup popup(this);
+  popup.exec();
+}
+
 //-----------------------------------------------------------------------------
 
 void MainWindow::onUpgradeTabPro() {}
@@ -2220,6 +2231,8 @@ void MainWindow::defineActions() {
                        QT_TR_NOOP("&Set Scene Settings as Default"), "",
                        "save_default_settings");
   createMenuFileAction(MI_SoundTrack, QT_TR_NOOP("&Export Soundtrack"), "");
+  createMenuFileAction(MI_VideoExtractFrames,
+                       QT_TR_NOOP("Video: Extract Frames and Audio..."), "");
   createMenuFileAction(MI_Preferences, QT_TR_NOOP("&Preferences..."), "Ctrl+U",
                        "gear");
   createMenuFileAction(MI_ShortcutPopup, QT_TR_NOOP("&Configure Shortcuts..."),

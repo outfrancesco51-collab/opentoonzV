@@ -12,6 +12,7 @@
         <command>MI_LoadSubSceneFile</command>
         <separator/>
         <command>MI_ConvertFileWithInput</command>
+        <command>MI_VideoExtractFrames</command>
         <separator/>
         <command>MI_LoadColorModel</command>
         <separator/>

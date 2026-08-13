@@ -170,6 +170,8 @@ protected slots:
 
 //-----------------------------------------------------------------------------
 
+class QComboBox;
+
 class TopBar final : public QToolBar {
   Q_OBJECT
 
@@ -177,6 +179,7 @@ class TopBar final : public QToolBar {
   RoomTabWidget *m_roomTabBar;
   StackedMenuBar *m_stackedMenuBar;
   QCheckBox *m_lockRoomCB;
+  QComboBox *m_workspaceSelector;
 
 public:
   TopBar(QWidget *parent);
@@ -185,6 +188,9 @@ public:
   QTabBar *getRoomTabWidget() const { return m_roomTabBar; }
 
   StackedMenuBar *getStackedMenuBar() const { return m_stackedMenuBar; }
+
+protected slots:
+  void onWorkspaceChanged(int index);
 
 protected:
   /*--  右クリックで消えないようにする--*/

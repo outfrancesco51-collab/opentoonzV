@@ -161,12 +161,11 @@ static void initToonzEnv(QHash<QString, QString> &argPathValues) {
     ++i;
   }
 
-  QCoreApplication::setOrganizationName("OpenToonz");
+  QCoreApplication::setOrganizationName("OpenToonzV");
   QCoreApplication::setOrganizationDomain("");
-  QGuiApplication::setDesktopFileName("io.github.OpenToonz");
+  QGuiApplication::setDesktopFileName("org.opentoonz.OpenToonzV");
   QGuiApplication::setWindowIcon(QIcon::fromTheme("io.github.OpenToonz"));
-  QCoreApplication::setApplicationName(
-      QString::fromStdString(TEnv::getApplicationName()));
+  QCoreApplication::setApplicationName("OpenToonzV");
 
   /*-- TOONZROOTのPathの確認 --*/
   // controllo se la xxxroot e' definita e corrisponde ad un folder esistente

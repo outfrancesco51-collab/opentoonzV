@@ -1,5 +1,4 @@
-
-
+#include <QComboBox>
 #include "menubar.h"
 
 // Tnz6 includes
@@ -1612,6 +1611,13 @@ TopBar::TopBar(QWidget *parent) : QToolBar(parent) {
   m_lockRoomCB->setToolTip(tr("Lock Rooms Tab"));
   m_lockRoomCB->setChecked(m_roomTabBar->isLocked());
 
+  m_workspaceSelector = new QComboBox(this);
+  m_workspaceSelector->addItem(tr("Animations"));
+  m_workspaceSelector->addItem(tr("Post-production"));
+  m_workspaceSelector->setObjectName("WorkspaceSelector");
+  m_workspaceSelector->setMinimumWidth(150);
+  connect(m_workspaceSelector, SIGNAL(currentIndexChanged(int)), this, SLOT(onWorkspaceChanged(int)));
+
   QHBoxLayout *mainLayout = new QHBoxLayout();
   mainLayout->setSpacing(0);
   mainLayout->setContentsMargins(0, 0, 0, 0);
@@ -1625,6 +1631,8 @@ TopBar::TopBar(QWidget *parent) : QToolBar(parent) {
       menuLayout->addStretch(1);
     }
     mainLayout->addLayout(menuLayout);
+    mainLayout->addSpacing(20);
+    mainLayout->addWidget(m_workspaceSelector, 0, Qt::AlignVCenter);
     mainLayout->addStretch(1);
     mainLayout->addWidget(m_roomTabBar, 0);
     mainLayout->addSpacing(2);
@@ -1648,4 +1656,18 @@ TopBar::TopBar(QWidget *parent) : QToolBar(parent) {
   ret = ret && connect(m_lockRoomCB, SIGNAL(toggled(bool)), m_roomTabBar,
                        SLOT(setIsLocked(bool)));
   assert(ret);
+}
+
+void TopBar::onWorkspaceChanged(int index) {
+  if (!m_roomTabBar) return;
+  if (index == 1) { // Post-production
+    for (int i = 0; i < m_roomTabBar->count(); ++i) {
+      if (m_roomTabBar->tabText(i).contains("Schem") || m_roomTabBar->tabText(i).contains("Post") || m_roomTabBar->tabText(i).contains("Xsheet")) {
+        m_roomTabBar->setCurrentIndex(i);
+        break;
+      }
+    }
+  } else {
+    m_roomTabBar->setCurrentIndex(0);
+  }
 }

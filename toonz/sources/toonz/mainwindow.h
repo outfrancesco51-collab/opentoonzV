@@ -102,6 +102,7 @@ public:
   void onNewScene();
   void onLoadScene();
   void onLoadSubScene();
+  void onVideoExtractFrames();
   void resetRoomsLayout();
   void maximizePanel();
   void fullScreenWindow();
