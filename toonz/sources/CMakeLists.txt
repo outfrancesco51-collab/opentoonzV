@@ -202,7 +202,7 @@ elseif(BUILD_ENV_APPLE)
         # Conventional usage: if the QT_PATH is explicitly set
     else()
         set(QT_LIB_PATH "${QT_PATH}/")
-        list(APPEND CMAKE_PREFIX_PATH "${QT_LIB_PATH}cmake/")
+        list(APPEND CMAKE_PREFIX_PATH "${QT_LIB_PATH}cmake/Qt5")
     endif()
 
 
