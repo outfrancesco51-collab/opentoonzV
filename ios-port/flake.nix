@@ -50,6 +50,7 @@
         "-DCMAKE_OSX_ARCHITECTURES=arm64"
         "-DCMAKE_SYSTEM_PROCESSOR=aarch64"
         "-DCMAKE_PREFIX_PATH=${qt5Env}"
+        "-DQt5_DIR=${qt5Env}/lib/cmake/Qt5"
         "-DQt5Core_DIR=${pkgs.qt5.qtbase.dev}/lib/cmake/Qt5Core"
         "-DQt5Gui_DIR=${pkgs.qt5.qtbase.dev}/lib/cmake/Qt5Gui"
         "-DQt5Widgets_DIR=${pkgs.qt5.qtbase.dev}/lib/cmake/Qt5Widgets"
