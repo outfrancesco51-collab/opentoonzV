@@ -40,7 +40,7 @@
         "-DCMAKE_OSX_ARCHITECTURES=arm64"
         "-DCMAKE_SYSTEM_PROCESSOR=arm64"
         "-DCMAKE_BUILD_TYPE=Release"
-        "-DQT_PATH=${pkgs.qt5.qtbase}/lib"
+        "-DQT_PATH=${pkgs.qt5.qtbase.dev}/lib"
         # OpenToonz-specific flags for mobile/iOS
         "-DWITH_WINTAB=OFF"
         "-DWITH_MIDI=OFF"
