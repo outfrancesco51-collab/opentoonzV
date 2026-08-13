@@ -20,13 +20,13 @@
         cmake
         ninja
         pkg-config
-        qt6.wrapQtAppsHook
+        qt5.wrapQtAppsHook
       ];
 
       buildInputs = with pkgs; [
-        qt6.qtbase
-        qt6.qtsvg
-        qt6.qtmultimedia
+        qt5.qtbase
+        qt5.qtsvg
+        qt5.qtmultimedia
         boost
         libpng
         libjpeg
@@ -40,7 +40,7 @@
         "-DCMAKE_OSX_ARCHITECTURES=arm64"
         "-DCMAKE_SYSTEM_PROCESSOR=arm64"
         "-DCMAKE_BUILD_TYPE=Release"
-        "-DQT_PATH=${pkgs.qt6.qtbase}/lib"
+        "-DQT_PATH=${pkgs.qt5.qtbase}/lib"
         # OpenToonz-specific flags for mobile/iOS
         "-DWITH_WINTAB=OFF"
         "-DWITH_MIDI=OFF"
