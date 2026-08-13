@@ -40,6 +40,7 @@ jobs:
       - name: Configure OpenToonz for WebAssembly
         run: |
           mkdir build_wasm && cd build_wasm
+          chmod +x $(which qt-cmake) || true
           qt-cmake ../toonz/sources \
             -DCMAKE_BUILD_TYPE=Release \
             -DWEBASSEMBLY=1 -DEMSCRIPTEN=1 \

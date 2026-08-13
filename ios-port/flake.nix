@@ -8,6 +8,12 @@
   outputs = { self, nixpkgs }: let
     system = "aarch64-darwin";
     pkgs = import nixpkgs { inherit system; };
+
+    # Merge all Qt5 dev outputs so CMake can find all components in one prefix
+    qt5Env = pkgs.symlinkJoin {
+      name = "qt5-env";
+      paths = with pkgs.qt5; [ qtbase.dev qtsvg.dev qtmultimedia.dev qtscript.dev qttools.dev ];
+    };
   in {
     packages.${system}.default = pkgs.stdenv.mkDerivation {
       pname = "opentoonz-ios";
@@ -35,12 +41,6 @@
         libtiff
         zlib
       ];
-
-      # Merge all Qt5 dev outputs so CMake can find all components in one prefix
-      qt5Env = pkgs.symlinkJoin {
-        name = "qt5-env";
-        paths = with pkgs.qt5; [ qtbase.dev qtsvg.dev qtmultimedia.dev qtscript.dev qttools.dev ];
-      };
 
       cmakeFlags = [
         "-DNIX_BUILD=1"
