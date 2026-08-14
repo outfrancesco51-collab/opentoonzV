@@ -556,6 +556,14 @@ else()
 endif()
 unset(_SYSTEM_BIG_ENDIAN)
 
+include(CheckFunctionExists)
+set(CMAKE_REQUIRED_LIBRARIES ${TIFF_LIB})
+set(CMAKE_REQUIRED_INCLUDES ${TIFF_INCLUDE_DIR})
+check_function_exists(TIFFReadRGBATile_64 HAVE_TIFFREADRGBATILE_64)
+if(HAVE_TIFFREADRGBATILE_64)
+    add_definitions(-DHAVE_TIFFREADRGBATILE_64)
+endif()
+
 
 set(C_WARNINGS)
 set(CXX_WARNINGS)

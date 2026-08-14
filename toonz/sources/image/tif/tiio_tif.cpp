@@ -37,6 +37,11 @@ extern "C" {
 //    TifReader  implementation
 //**************************************************************************
 
+#ifndef HAVE_TIFFREADRGBATILE_64
+inline int TIFFReadRGBATile_64(TIFF *tif, uint32 x, uint32 y, uint64 *raster) { return 1; }
+inline int TIFFReadRGBAStrip_64(TIFF *tif, uint32 y, uint64 *raster) { return 1; }
+#endif
+
 class TifReader final : public Tiio::Reader {
   TIFF *m_tiff;
   int m_row;

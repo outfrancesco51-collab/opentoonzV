@@ -32,16 +32,17 @@ jobs:
       - name: Setup Qt for WebAssembly
         uses: jurplel/install-qt-action@v3
         with:
-          version: '6.5.3'
+          version: '5.15.2'
           target: 'desktop'
-          arch: 'wasm_singlethread'
+          arch: 'wasm_32'
           cache: 'true'
 
       - name: Configure OpenToonz for WebAssembly
         run: |
           mkdir build_wasm && cd build_wasm
-          chmod +x $Qt6_DIR/bin/qt-cmake || true
-          qt-cmake ../toonz/sources \
+          cmake ../toonz/sources \
+            -DCMAKE_TOOLCHAIN_FILE=${EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake \
+            -DQt5_DIR=$Qt5_DIR/lib/cmake/Qt5 \
             -DCMAKE_BUILD_TYPE=Release \
             -DWEBASSEMBLY=1 -DEMSCRIPTEN=1 \
             -DCMAKE_CXX_FLAGS="-s USE_PTHREADS=1 -s ALLOW_MEMORY_GROWTH=1 -s MAX_WEBGL_VERSION=2 -s LEGACY_GL_EMULATION=1 -O3" \
